@@ -1,25 +1,38 @@
-/* eslint-disable */
-import "bootstrap";
-import "./style.css";
+import "file-loader?name=[name].[ext]!../index.html";
+import "../style/index.scss";
 
-import "./assets/img/rigo-baby.jpg";
-import "./assets/img/4geeks.ico";
-
-window.onload = () => {
-  document.querySelector("#excuse").innerHTML = generateExcuse();
-  console.log("Hello Rigo from the console!");
-};
-
-let generateExcuse = () => {
-  let who = ["the dog", "my granma", "his turtle", "my bird"];
-  let what = ["eat", "pissed", "crushed", "broked"];
-  let when = [
-    "before the class",
-    "right in time",
-    "when I finished",
-    "during my lunch",
-    "while I was praying"
+window.onload = function() {
+  const who = ["Mi perro", "Mi amigo", "Mi gato", "Mi coche", "Mi padre"];
+  const what = [
+    "estropeó mis deberes",
+    "se rompió",
+    "se cayó",
+    "atropelló al vecino",
+    "me arrastró"
+  ];
+  const where = [
+    "en mi casa.",
+    "en casa de mis abuelos",
+    "en frente del restaurante",
+    "en Madrid",
+    "en Santiago de Compostela",
+    "en el garaje",
+    "en la calle principal del pueblo"
   ];
 
-  return "My dog eat my homework";
+  let frase =
+    who[rand(who.length)] +
+    " " +
+    what[rand(what.length)] +
+    " " +
+    where[rand(where.length)];
+
+  let excuseSpan = document.querySelector("#excuse");
+
+  excuseSpan.innerHTML = frase;
 };
+
+function rand(length) {
+  let number = Math.floor(Math.random() * length);
+  return number;
+}
